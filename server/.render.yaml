@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: web-app-attack-demo
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    rootDir: server
+    envVars:
+      - key: PORT
+        value: 3000
