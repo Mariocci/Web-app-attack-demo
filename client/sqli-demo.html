@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>SQL Injection — tautology demo</title>
+        <style>
+            body { font-family: Arial, sans-serif; padding: 16px; max-width: 800px; }
+            label { display:block; margin-top:8px; }
+            pre { background:#f4f4f4; padding:8px; white-space:pre-wrap; }
+            .controls { margin-top:12px; }
+        </style>
+    </head>
+    <body>
+        <h1>SQL Injection — tautology demo</h1>
+
+        <p>
+            If the checkbox <strong>Turn vulnerability on</strong> is checked, the backend will be queried using the <em>vulnerable</em> route (string concatenation).
+            Enter a username and password and press <em>Submit</em>. When the vulnerability is enabled, a payload such as:
+        </p>
+        <pre>' OR 1=1 --</pre>
+        <p>in the password field will return all users from the database.</p>
+
+        <label>
+            <input id="vulnToggle" type="checkbox" />
+            Turn the vulnerability on
+        </label>
+
+        <form id="loginForm">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="off" />
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="text" autocomplete="off" />
+
+            <div class="controls">
+                <button id="submitButton" type="submit">Submit</button>
+            </div>
+                </form>
+                <hr />
+                <h2>SQL Injection Examples</h2>
+                <ul>
+                    <li><strong>Tautology:</strong> <code>' OR 1=1 --</code></li>
+                    <li><strong>Illegal/logically incorrect query:</strong> <code>' AND 1=2; --</code></li>
+                    <li><strong>Blind SQL injection:</strong> <code>' OR username='alice' --</code></li>
+                    <li><strong>Union query:</strong> <code>' UNION SELECT 1, 'hacker', 'hacker@example.com', 'secret' --</code></li>
+                    <li><strong>Stacked queries:</strong> <code>'; DROP TABLE users; --</code></li>
+                </ul>
+                <h3>Response</h3>
+                <pre id="result">No response yet.</pre>
+                <script src="./js/sqli.js"></script>
+                <hr />
+    </body>
+</html>
