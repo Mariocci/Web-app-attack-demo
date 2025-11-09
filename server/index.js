@@ -7,7 +7,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const sqliRoutes = require('./routes/sqli');
-const csrfRoutes = require('./routes/csrf');
 
 app.use('/sqli', sqliRoutes);
 app.use('/csrf', csrfRoutes);
